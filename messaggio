@@ -1,0 +1,39 @@
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+# Creazione del database SQLite
+conn = sqlite3.connect('database.db')
+c = conn.cursor()
+c.execute('CREATE TABLE IF NOT EXISTS messaggi (testo TEXT)')
+conn.commit()
+conn.close()
+
+# Rotta per inviare un messaggio
+@app.route('/invia_messaggio', methods=['POST'])
+def invia_messaggio():
+    data = request.get_json()
+    if 'testo' in data:
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute('INSERT INTO messaggi (testo) VALUES (?)', (data['testo'],))
+        conn.commit()
+        conn.close()
+        return "Messaggio inviato", 201
+    else:
+        return "Richiesta non valida", 400
+
+# Rotta per ottenere tutti i messaggi
+@app.route('/messaggi', methods=['GET'])
+def ottieni_messaggi():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute('SELECT testo FROM messaggi')
+    risultati = c.fetchall()
+    messaggi = [r[0] for r in risultati]
+    conn.close()
+    return jsonify(messaggi)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
