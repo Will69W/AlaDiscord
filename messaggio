@@ -49,7 +49,6 @@ from flask import Flask, request, jsonify
 import sqlite3
 
 app = Flask(__name__)
-
 # Функция для создания и инициализации базы данных
 def initialize_database():
     conn = sqlite3.connect('database.db')
@@ -57,40 +56,29 @@ def initialize_database():
     c.execute('CREATE TABLE IF NOT EXISTS messaggi (testo TEXT)')
     conn.commit()
     conn.close()
-
+[]
 # Инициализация базы данных
 initialize_database()
-
+]
 # Передача сообщения в базу данных
 @app.route('/add_message', methods=['POST'])
 def add_message():
     try:
         data = request.get_json()
         text = data.get('text')
-
+[]
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
         conn.commit()
         conn.close()
-
         return jsonify({'message': 'Messaggio aggiunto con successo al database'})
     except Exception as e:
         return jsonify({'error': str(e)})
-
 # Получение всех сообщений из базы данных
 @app.route('/get_messages', methods=['GET'])
 def get_messages():
-    try:
-        conn = sqlite3.connect('database.db')
-        c = conn.cursor()
-        c.execute("SELECT * FROM messaggi")
-        messages = c.fetchall()
-        conn.close()
-
-        return jsonify({'messages': messages})
-    except Exception as e:
-        return jsonify({'error': str(e})
+    return jsonify({'error': str(e})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
