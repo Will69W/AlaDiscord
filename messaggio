@@ -53,7 +53,18 @@ app = Flask(__name__)
 def initialize_database():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS messaggi (testo TEXT)')
+    c.execute('CREAT[]
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
+        conn.commit()
+        conn.close()
+        return jsonify({'message': 'Messaggio aggiunto con successo al database'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+# Получение всех сообщений из базы данных
+@app.route('/get_messages', methods=['GET'])
+def get_messages():E TABLE IF NOT EXISTS messaggi (testo TEXT)')
     conn.commit()
     conn.close()
 []
@@ -69,6 +80,43 @@ def add_message():
 []
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
+        c.execute("INurn jsonify({'message': 'Message successfully added to the database'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+@app.route('/get_messages', methods=['GET'])
+def get_messages():
+    try:
+        conn = connect_to_db()SERT INTO messaggi (testo) VALUES (?)", (text,))
+        conn.commit()
+        conn.close(urn jsonify({'message': 'Message successfully added to the database'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+@app.route('/get_messages', methods=['GET'])
+def get_messages():
+    try:
+        conn = connect_to_db())
+        return jsonify({'message': 'Messaggio aggiunto con successo al database'})
+    except Exception urn jsonify({'message': 'Message successfully added to the database'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+@app.route('/get_messages', methods=['GET'])
+def get_messages():
+    try:
+        conn = connect_to_db()as e:
+        return jsonify({'error': str(e)})
+# Получение всех сообщений из базы данных
+@app.route('/get_messages', methods=['GET'])
+def get_messages():
+    return jsonify({'error': str(e})
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+[]
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
         c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
         conn.commit()
         conn.close()
@@ -78,7 +126,3 @@ def add_message():
 # Получение всех сообщений из базы данных
 @app.route('/get_messages', methods=['GET'])
 def get_messages():
-    return jsonify({'error': str(e})
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
