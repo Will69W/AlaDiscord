@@ -102,27 +102,4 @@ def get_messages():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-@app.route('/get_messages', methods=['GET'])
-def get_messages():
-    try:
-        conn = connect_to_db()as e:
-        return jsonify({'error': str(e)})
-# Получение всех сообщений из базы данных
-@app.route('/get_messages', methods=['GET'])
-def get_messages():
-    return jsonify({'error': str(e})
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-[]
-        conn = sqlite3.connect('database.db')
-        c = conn.cursor()
-        c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
-        conn.commit()
-        conn.close()
-        return jsonify({'message': 'Messaggio aggiunto con successo al database'})
-    except Exception as e:
-        return jsonify({'error': str(e)})
-# Получение всех сообщений из базы данных
-@app.route('/get_messages', methods=['GET'])
-def get_messages():
