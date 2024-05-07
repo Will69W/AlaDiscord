@@ -8,10 +8,6 @@ def create_table():
 
 @app.route('/add_message', methods=['POST'])
 def add_message():
-    try:
-        data = request.get_json()
-        text = data.get('text')
-        conn = connect_to_db()
         c = conn.cursor()
         c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
         conn.commit()
