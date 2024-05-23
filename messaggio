@@ -9,10 +9,6 @@ def create_table():
 @app.route('/add_message', methods=['POST'])
 def add_message():
         c = conn.cursor()
-        c.execute("INSERT INTO messaggi (testo) VALUES (?)", (text,))
-        conn.commit()
-        conn.close()
-        return jsonify({'message': 'Message successfully added to the database'})
     except Exception as e:
         return jsonify({'error': str(e)})
 
