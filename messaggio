@@ -6,11 +6,6 @@ def create_table():
     c = conn.cursor()
     create_table()
 
-@app.route('/add_message', methods=['POST'])
-def add_message():
-        c = conn.cursor()
-    except Exception as e:
-        return jsonify({'error': str(e)})
 
 @app.route('/get_messages', methods=['GET'])
 def get_messages():
